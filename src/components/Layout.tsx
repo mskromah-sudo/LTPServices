@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Menu, X, LayoutDashboard, Package, ShoppingCart, TrendingUp, Users, Headphones, Settings } from 'lucide-react';
+import { Menu, X, LayoutDashboard, Package, ShoppingCart, TrendingUp, Users, Headphones } from 'lucide-react';
+import { UserProfileDropdown } from './UserProfileDropdown';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -59,9 +60,7 @@ export function Layout({ children, currentModule, onModuleChange }: LayoutProps)
           <h2 className="text-xl font-semibold text-gray-900">
             {modules.find(m => m.id === currentModule)?.label || 'LTP Services'}
           </h2>
-          <button className="p-2 hover:bg-gray-100 rounded-lg">
-            <Settings size={20} className="text-gray-600" />
-          </button>
+          <UserProfileDropdown />
         </header>
 
         <div className="p-8">
