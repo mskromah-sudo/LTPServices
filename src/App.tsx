@@ -7,6 +7,9 @@ import { ResetPassword } from './pages/ResetPassword';
 import { DashboardPage } from './pages/Dashboard';
 import { ProfilePage } from './pages/Profile';
 import { SettingsPage } from './pages/Settings';
+import { PricingPage } from './pages/Pricing';
+import { CheckoutPage } from './pages/Checkout';
+import { BillingPage } from './pages/Billing';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { useAuth } from './contexts/AuthContext';
 
@@ -32,6 +35,9 @@ function App() {
       <Route path="/auth/verify-email" element={<VerifyEmail />} />
       <Route path="/auth/reset-password" element={<ResetPassword />} />
 
+      <Route path="/pricing" element={<PricingPage />} />
+      <Route path="/checkout/:planSlug" element={<CheckoutPage />} />
+
       <Route
         path="/dashboard"
         element={
@@ -53,6 +59,14 @@ function App() {
         element={
           <ProtectedRoute>
             <SettingsPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/account/billing"
+        element={
+          <ProtectedRoute>
+            <BillingPage />
           </ProtectedRoute>
         }
       />

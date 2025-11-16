@@ -136,3 +136,72 @@ export interface DashboardStats {
   topProducts: Product[];
   salesTrend: { date: string; amount: number }[];
 }
+
+export interface SubscriptionPlan {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  priceMonthly: number;
+  priceAnnual?: number;
+  displayOrder: number;
+  isFeatured: boolean;
+  isActive: boolean;
+  features: PlanFeature[];
+}
+
+export interface PlanFeature {
+  id: string;
+  featureName: string;
+  isIncluded: boolean;
+  displayOrder: number;
+}
+
+export interface UserSubscription {
+  id: string;
+  userId: string;
+  planId: string;
+  plan?: SubscriptionPlan;
+  status: 'active' | 'cancelled' | 'paused' | 'expired';
+  billingCycle: 'monthly' | 'annual';
+  currentPeriodStart: string;
+  currentPeriodEnd: string;
+  cancelledAt?: string;
+  cancelAtPeriodEnd: boolean;
+  stripeSubscriptionId?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BillingInformation {
+  id: string;
+  userId: string;
+  stripeCustomerId?: string;
+  paymentMethodId?: string;
+  cardLastFour?: string;
+  cardBrand?: string;
+  cardExpMonth?: number;
+  cardExpYear?: number;
+  billingName?: string;
+  billingEmail?: string;
+  billingAddress?: string;
+  vatNumber?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Invoice {
+  id: string;
+  userId: string;
+  subscriptionId: string;
+  stripeInvoiceId?: string;
+  amountDue: number;
+  amountPaid: number;
+  status: 'draft' | 'open' | 'paid' | 'void' | 'uncollectible';
+  billingDate: string;
+  dueDate?: string;
+  paidDate?: string;
+  pdfUrl?: string;
+  createdAt: string;
+  updatedAt: string;
+}
